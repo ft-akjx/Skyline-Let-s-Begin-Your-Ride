@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charging...</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="charging-screen">
+        <h1>Charging in Progress</h1>
+        <div class="charging-animation">
+            <div class="battery">
+                <div class="charge"></div>
+            </div>
+            <p id="charging-percentage">0%</p>
+        </div>
+        <p>Please wait while your ride is being charged...</p>
+    </div>
+    <script>
+        // Simple charging animation
+        let percent = 0;
+        const chargeElem = document.querySelector('.charge');
+        const percentElem = document.getElementById('charging-percentage');
+        function animateCharge() {
+            if (percent < 100) {
+                percent += 1;
+                if(chargeElem) chargeElem.style.width = percent + '%';
+                if(percentElem) percentElem.textContent = percent + '%';
+                setTimeout(animateCharge, 40);
+            } else {
+                if(percentElem) percentElem.textContent = 'Charged!';
+            }
+        }
+        window.onload = animateCharge;
+    </script>
+</body>
+</html>
